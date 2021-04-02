@@ -1,12 +1,15 @@
 /**
- * Genomic Query - Naive solution
+ * Genomic Range Query - Naive solution
  *
- * Time complexity - O(n2)
+ * Time complexity - O(m * n)
  *
  * Space complexity - O(1)
- * @param {string} s first word
- * @param {string} t second word
- * @returns {boolean} isAnagram
+ *
+ * Codility report: https://app.codility.com/demo/results/trainingX6HFKH-QH2/
+ * @param {string []} S DNA Sequence
+ * @param {number []} P starting impact factors
+ * @param {number []} Q ending impact factors
+ * @returns {number []} minImpactFactors
  */
 function GenomicRangeQuery(S, P, Q) {
   const M = P.length;
@@ -16,9 +19,6 @@ function GenomicRangeQuery(S, P, Q) {
     ["G", 3],
     ["T", 4],
   ]);
-
-  // console.log(nucleotides);
-  // console.log(nucleotides.has("A"));
 
   const minImpactFactors = [];
 
@@ -38,7 +38,6 @@ function GenomicRangeQuery(S, P, Q) {
 
     minImpactFactors[i] = nucleotides.get(minImpactFactor);
   }
-  // console.log("minImpactFactors: ", minImpactFactors);
 
   return minImpactFactors;
 }
@@ -52,7 +51,6 @@ function test() {
     { S: "GG", P: [0, 1, 0], Q: [0, 1, 1], expectedRes: [3, 3, 3] },
     { S: "TT", P: [0, 0, 0], Q: [1, 1, 1], expectedRes: [4, 4, 4] },
     { S: "ATT", P: [0, 0, 0], Q: [1, 1, 1], expectedRes: [1, 1, 1] },
-    { S: "CAGCCTA", P: [2, 5, 0], Q: [4, 5, 6], expectedRes: [2, 4, 1] },
     { S: "CAGTCAT", P: [0, 1, 3], Q: [0, 5, 4], expectedRes: [2, 1, 2] },
   ];
 
