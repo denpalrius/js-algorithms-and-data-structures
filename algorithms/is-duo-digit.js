@@ -9,6 +9,7 @@ function isDuoDigit(number) {
       return 1;
     }
   }
+
   return 0;
 }
 
