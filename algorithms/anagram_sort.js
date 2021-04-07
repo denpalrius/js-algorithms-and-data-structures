@@ -17,7 +17,7 @@ function anagram(s, t) {
 }
 
 console.log(`"", "": `, anagram("", "")); //true
-console.log('"aaz", "azz": ', anagram("aaz", "azz")); //false
+console.log('"az", "azz": ', anagram("aaz", "azz")); //false
 console.log('"cinema", "iceman": ', anagram("cinema", "iceman")); //false
 console.log('"anagram", "nagaram": ', anagram("anagram", "nagaram")); //true
 console.log('"rat", "car": ', anagram("rat", "car")); //false
