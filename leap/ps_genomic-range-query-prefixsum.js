@@ -1,7 +1,7 @@
 /**
  * Genomic Range Query - Prefix sum solution
  *
- * Time complexity - O(m * n)
+ * Time complexity - O(m + n)
  *
  * Space complexity - O(1)
  *
@@ -44,10 +44,10 @@ function GenomicRangeQuery(S, P, Q) {
     }
   }
 
-  // console.log("prefixSum_A: ", prefixSum_A.join(","));
-  // console.log("prefixSum_C: ", prefixSum_C.join(","));
-  // console.log("prefixSum_G: ", prefixSum_G.join(","));
-  // console.log("prefixSum_T: ", prefixSum_T.join(","));
+  console.log("prefixSum_A: ", prefixSum_A.join(","));
+  console.log("prefixSum_C: ", prefixSum_C.join(","));
+  console.log("prefixSum_G: ", prefixSum_G.join(","));
+  console.log("prefixSum_T: ", prefixSum_T.join(","));
 
   const minImpactFactors = [];
 
@@ -69,10 +69,10 @@ function GenomicRangeQuery(S, P, Q) {
     } else {
       minImpactFactors[j] = 4;
     }
-    // console.log(
-    //   "Substring: ",
-    //   S.slice(start - 1, end) + " - " + minImpactFactors[j]
-    // );
+    console.log(
+      "Substring: ",
+      S.slice(start - 1, end) + " - " + minImpactFactors[j]
+    );
   }
 
   return minImpactFactors;
@@ -81,13 +81,13 @@ function GenomicRangeQuery(S, P, Q) {
 function test() {
   const testData = [
     { S: "CAGCCTA", P: [2, 5, 0], Q: [4, 5, 6], expectedRes: [2, 4, 1] }, // C = 2 A = 1 G = 3 C = 2  C = 2 T = 4  A = 1
-    { S: "C", P: [0, 0, 0], Q: [0, 0, 0], expectedRes: [2, 2, 2] },
-    { S: "AA", P: [0, 1, 0], Q: [0, 1, 1], expectedRes: [1, 1, 1] },
-    { S: "CC", P: [0, 1, 0], Q: [0, 1, 1], expectedRes: [2, 2, 2] },
-    { S: "GG", P: [0, 1, 0], Q: [0, 1, 1], expectedRes: [3, 3, 3] },
-    { S: "TT", P: [0, 0, 0], Q: [1, 1, 1], expectedRes: [4, 4, 4] },
-    { S: "ATT", P: [0, 0, 0], Q: [1, 1, 1], expectedRes: [1, 1, 1] },
-    { S: "CAGTCAT", P: [0, 1, 3], Q: [0, 5, 4], expectedRes: [2, 1, 2] },
+    // { S: "C", P: [0, 0, 0], Q: [0, 0, 0], expectedRes: [2, 2, 2] },
+    // { S: "AA", P: [0, 1, 0], Q: [0, 1, 1], expectedRes: [1, 1, 1] },
+    // { S: "CC", P: [0, 1, 0], Q: [0, 1, 1], expectedRes: [2, 2, 2] },
+    // { S: "GG", P: [0, 1, 0], Q: [0, 1, 1], expectedRes: [3, 3, 3] },
+    // { S: "TT", P: [0, 0, 0], Q: [1, 1, 1], expectedRes: [4, 4, 4] },
+    // { S: "ATT", P: [0, 0, 0], Q: [1, 1, 1], expectedRes: [1, 1, 1] },
+    // { S: "CAGTCAT", P: [0, 1, 3], Q: [0, 5, 4], expectedRes: [2, 1, 2] },
   ];
 
   console.clear();
