@@ -35,6 +35,10 @@ function solution(k, scores) {
   return players;
 }
 
+// --------------------
+// Testing the solution
+// --------------------
+
 const testDataSet = [
   { scores: [100, 50, 50, 25], k: 3, expectedRes: 3 },
   { scores: [20, 40, 60, 80, 100], k: 4, expectedRes: 4 },
