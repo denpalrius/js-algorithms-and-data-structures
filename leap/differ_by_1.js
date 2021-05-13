@@ -19,8 +19,10 @@ function solution(A) {
 }
 
 const dataSet = [
+  // Simple test cases
   { A: [7], expectedRes: false },
   { A: [4, 3], expectedRes: true },
+  // Edge cases
   { A: [11, 1, 8, 12, 14], expectedRes: true },
   { A: [4, 10, 8, 5, 9], expectedRes: true },
   { A: [5, 5, 5, 5, 5, 5], expectedRes: false },
