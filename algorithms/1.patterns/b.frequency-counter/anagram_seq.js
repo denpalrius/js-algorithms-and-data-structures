@@ -1,6 +1,8 @@
 /**
  * Checks whether the first word is an anagram of the second word.
  * This function makes use of a frequency counter
+ * 
+ * Algorithm used: Frequency counter
  *
  * Time complexity - O(n)
  *
