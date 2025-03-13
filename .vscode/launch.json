@@ -12,7 +12,7 @@
             "skipFiles": [
                 "<node_internals>/**"
             ],
-            "program": "${workspaceFolder}/algorithms/1.patterns/a.naive/sum_zero_naive.js"
+            "program": "${file}"
         }
     ]
 }
