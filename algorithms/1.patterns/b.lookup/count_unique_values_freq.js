@@ -6,7 +6,7 @@
  *
  * Time complexity - O(n) - linear
  * Space complexity - O(n) - linear
- * 
+ *
  * @param {number[]} sortedArray - The input sorted array of numbers
  * @returns {number} - Count of unique values
  */
@@ -14,7 +14,7 @@ function countUniqueValues(sortedArray) {
   if (!sortedArray || sortedArray.length === 0) {
     return 0;
   }
-  
+
   const lookup = {};
   let count = 0;
 
@@ -24,17 +24,19 @@ function countUniqueValues(sortedArray) {
       count += 1;
     }
   }
-  
+
   return count;
 }
 
 function test(arr, expected) {
   const actual = countUniqueValues(arr);
   const res = `${actual === expected ? "✅ passed" : "🆘 failed"}`;
-  
+
   // Create a readable array representation for the log
   const arrStr = arr ? `[${arr}]` : "[]";
-  console.log(`Test with ${arrStr}: ${res} (got ${actual}, expected ${expected})`);
+  console.log(
+    `Test with ${arrStr}: ${res} (got ${actual}, expected ${expected})`
+  );
 }
 
 // Running test cases using the test function
