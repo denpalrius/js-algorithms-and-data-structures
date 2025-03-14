@@ -1,15 +1,13 @@
 # Javascript Algorithms and data structures.
 
-These are practice algorithms imlemented using Javascript.
-
-I also decided to use Typescript in some of them for better statically typed code.
+These are practice algorithms imlemented using Javascript, Typescript and Python.
 
 Some include multiple recognised patterns from different sources.
 
 ## Running the JS scripts
 
 ```js
-$ node './script/name.js'
+$ node './script/{name}.js'
 ```
 
 ## Running the TS scripts
@@ -19,5 +17,11 @@ $ npm install -g ts-node
 ```
 
 ```sh
-$ ts-node './script/name.ts'
+$ ts-node './script/{name}.ts'
+```
+
+## Running the Python scripts
+
+```js
+$ python './script/{name}.py'
 ```
