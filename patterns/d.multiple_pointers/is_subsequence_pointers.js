@@ -22,15 +22,11 @@ function isSubsequence(aStr, bStr) {
   while (bPointer < bStr.length) {
     // At each character in bStr, check if it is the one in aStr at that pointer
     // If it is, move the aStr pointer forward
-    if (aStr[aPointer] === bStr[bPointer]) {
-      aPointer++;
-    }
+    if (aStr[aPointer] === bStr[bPointer]) aPointer++;
 
     // Check if the aString pointer is at the end of aStr
     // If it is, we've found all characters of aStr in bStr in order
-    if (aPointer === aStr.length) {
-      return true;
-    }
+    if (aPointer === aStr.length) return true;
 
     // Always move bPointer forward to check next character
     bPointer++;

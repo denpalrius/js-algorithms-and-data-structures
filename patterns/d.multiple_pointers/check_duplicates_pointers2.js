@@ -23,9 +23,7 @@ function areThereDuplicates(...params) {
   let current = 0;
   let next = 1;
   while (next < params.length) {
-    if (params[current] === params[next]) {
-      return true;
-    }
+    if (params[current] === params[next]) return true;
 
     current++;
     next++;

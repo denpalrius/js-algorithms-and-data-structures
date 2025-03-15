@@ -16,22 +16,15 @@ function averagePair(numList, target) {
     return false;
   }
 
-  // Two pointer approach
   let left = 0;
   let right = numList.length - 1;
 
   while (left < right) {
     const average = (numList[left] + numList[right]) / 2;
 
-    if (average === target) {
-      return true;
-    } else if (average < target) {
-      // Need a higher average, move left pointer up
-      left++;
-    } else {
-      // Need a lower average, move right pointer down
-      right--;
-    }
+    if (average === target) return true;
+    else if (average < target) left++;      // Need a higher average, move left pointer up
+    else right--;                           // Need a lower average, move right pointer down
   }
 
   return false;

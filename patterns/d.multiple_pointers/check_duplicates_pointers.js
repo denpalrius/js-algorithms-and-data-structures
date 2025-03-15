@@ -20,10 +20,7 @@ function areThereDuplicates(...params) {
 
   // Look for adjacent equal values
   for (let i = 0; i < params.length - 1; i++) {
-    // Two pointers: The current value and the next value
-    if (params[i] === params[i + 1]) {
-      return true;
-    }
+    if (params[i] === params[i + 1]) return true;
   }
   return false;
 }
