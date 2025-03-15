@@ -28,12 +28,12 @@ function constructNote(message, letters) {
 
   // Count character frequencies in message
   for (let char of message) {
-    messageLookup[char] = (messageLookup[char] || 0) + 1;
+    messageLookup[char] = ++messageLookup[char] || 1;
   }
 
   // Count character frequencies in letters
   for (let char of letters) {
-    letterLookup[char] = (letterLookup[char] || 0) + 1;
+    letterLookup[char] = ++letterLookup[char] || 1;
   }
 
   // Check if we have enough of each character
