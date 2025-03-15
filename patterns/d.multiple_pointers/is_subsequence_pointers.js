@@ -12,6 +12,10 @@
  * @returns {boolean} - True if aStr is a subsequence of bStr
  */
 function isSubsequence(aStr, bStr) {
+  // Edge cases
+  if (aStr.length === 0) return true;
+  if (bStr.length === 0) return false;
+
   let aPointer = 0; // Pointer for a character in aStr
   let bPointer = 0; // Pointer for a character in bStr
 
