@@ -1,6 +1,6 @@
 /**
- * Calculates the size (number of nodes) of a binary tree.
- * This function uses recursion to count all nodes.
+ * Calculates the height of a binary tree.
+ * This function uses recursion to find the maximum height.
  *
  * Algorithm used: Recursion
  *
@@ -8,17 +8,18 @@
  * Space complexity - O(h) - height of the tree (worst case O(n))
  *
  * @param {Node|null} root - The root node of the binary tree
- * @returns {number} - The size of the tree (number of nodes)
+ * @returns {number} - The height of the tree
  */
 function treeSize(root) {
-  // Base case: empty tree has size 0
+  // Base case: empty tree has height 0
   if (root === null) return 0;
 
-  // Size is 1 (current node) plus sizes of left and right subtrees
-  const leftSize = treeSize(root.left);
-  const rightSize = treeSize(root.right);
+  // Recursively calculate height of left and right subtrees
+  const leftHeight = treeSize(root.left);
+  const rightHeight = treeSize(root.right);
 
-  return 1 + leftSize + rightSize;
+  // Height is the maximum of left and right subtree heights, plus 1 for current level
+  return Math.max(leftHeight, rightHeight) + 1;
 }
 
 /**
@@ -44,10 +45,10 @@ root.left = new Node();
 root.right = new Node();
 root.left.left = new Node();
 
-test(root, 4); // Expected: 4 (root + left + right + left.left = 4 nodes)
+test(root, 3);
 
 const root2 = null;
-test(root2, 0); // Expected: 0 (empty tree)
+test(root2, 0);
 
 const root3 = new Node();
-test(root3, 1); // Expected: 1 (just the root node)
+test(root3, 1);
