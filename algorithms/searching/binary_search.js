@@ -12,50 +12,44 @@
  * @returns {number} - The index of the value if found, -1 otherwise
  */
 function binarySearch(array, val) {
-    // Handle edge cases
-    if (!array || !array.length) return -1;
-    if (val === undefined || val === null) return -1;
-    
-    // Initialize pointers for binary search
-    let left = 0;
-    let right = array.length - 1;
-    
-    // Continue until search range is valid
-    while (left <= right) {
-      // Find middle index
-      const middle = Math.floor((left + right) / 2);
-      
-      // If target is found, return its index
-      if (array[middle] === val) {
-        return middle;
-      } 
-      // If target is less than middle element, search left half
-      else if (array[middle] > val) {
-        right = middle - 1;
-      } 
-      // If target is greater than middle element, search right half
-      else {
-        left = middle + 1;
-      }
+  if (!array || !array.length) return -1;
+  if (val === undefined || val === null) return -1;
+
+  let left = 0;
+  let right = array.length - 1;
+
+  while (left <= right) {
+    const middle = Math.floor((left + right) / 2);
+
+    // If target is found, return its index
+    if (array[middle] === val) {
+      return middle;
     }
-    
-    // Target not found
-    return -1;
+    // If target is less than middle element, search left half
+    else if (array[middle] > val) {
+      right = middle - 1;
+    }
+    // If target is greater than middle element, search right half
+    else {
+      left = middle + 1;
+    }
   }
-  
-  function test(array, val, expected) {
-    const actual = binarySearch(array, val);
-    const res = `${actual === expected ? "✅ passed" : "🆘 failed"}`;
-    
-    console.log(
-      `Test with [${array}], val=${val}: ${res} (got ${actual}, expected ${expected})`
-    );
-  }
-  
-  // Test cases
-  test([1, 2, 3, 4, 5], 2, 1);
-  test([1, 2, 3, 4, 5], 3, 2);
-  test([1, 2, 3, 4, 5], 5, 4);
-  test([1, 2, 3, 4, 5], 6, -1);
-  test([], 1, -1);
-  test([1, 2, 3, 4, 5], null, -1);
+
+  return -1;
+}
+
+function test(array, val, expected) {
+  const actual = binarySearch(array, val);
+  const res = `${actual === expected ? "✅ passed" : "🆘 failed"}`;
+
+  console.log(
+    `Test with [${array}], val=${val}: ${res} (got ${actual}, expected ${expected})`
+  );
+}
+
+test([1, 2, 3, 4, 5], 2, 1);
+test([1, 2, 3, 4, 5], 3, 2);
+test([1, 2, 3, 4, 5], 5, 4);
+test([1, 2, 3, 4, 5], 6, -1);
+test([], 1, -1);
+test([1, 2, 3, 4, 5], null, -1);
