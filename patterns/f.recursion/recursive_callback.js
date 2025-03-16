@@ -14,14 +14,10 @@
  */
 function someRecursive(arr, callback, index = 0) {
   // Base case: reached end of array, no elements satisfied the callback
-  if (index >= arr.length) {
-    return false;
-  }
+  if (index >= arr.length) return false;
 
   // If current element satisfies callback, return true
-  if (callback(arr[index])) {
-    return true;
-  }
+  if (callback(arr[index])) return true;
 
   // Continue checking with the next element
   return someRecursive(arr, callback, index + 1);
