@@ -14,45 +14,44 @@
  */
 function naiveSearch(long, short) {
   // Edge cases
-  if (short === "") return { found: true, matches: [], message: "Empty string always matches" };
-  if (long === "") return { found: false, matches: [], message: "Cannot find in empty string" };
-  if (short.length > long.length) return { found: false, matches: [], message: "Substring longer than string" };
+  if (short === "")
+    return { found: true, matches: [], message: "Empty string always matches" };
+  if (long === "")
+    return {
+      found: false,
+      matches: [],
+      message: "Cannot find in empty string",
+    };
+  if (short.length > long.length)
+    return {
+      found: false,
+      matches: [],
+      message: "Substring longer than string",
+    };
 
   const matches = [];
   let matchCount = 0;
 
-   for (let i = 0; i <= long.length - short.length; i++) {
-    let hasMatch = true;
-    
-    // For debugging
-    // console.log(`Checking position ${i}: "${long.substring(i, i + short.length)}"`);
-
-    // Compare each character of the substring
+  for (let i = 0; i <= long.length - short.length; i++) {
     for (let j = 0; j < short.length; j++) {
       const longChar = long[i + j];
       const shortChar = short[j];
-      
-      // For debugging
-      // console.log(`  Comparing: ${longChar} vs ${shortChar}`);
-      
-      if (longChar !== shortChar) {
-        hasMatch = false;
-        break; // Early exit once we know it's not a match
-      }
-    }
 
-    // If we found a match, record its position
-    if (hasMatch) {
-      matchCount++;
-      matches.push(i);
+      if (longChar !== shortChar) break;
+      if (j === short.length - 1) {
+        // We have found a match
+        matchCount++;
+        matches.push(i);
+      }
     }
   }
 
-  return { 
-    found: matchCount > 0, 
-    matches: matches, 
+  return {
+    found: matchCount > 0,
+    matches: matches,
     count: matchCount,
-    message: matchCount > 0 ? `Found ${matchCount} matches` : "No matches found"
+    message:
+      matchCount > 0 ? `Found ${matchCount} matches` : "No matches found",
   };
 }
 
@@ -61,7 +60,9 @@ function test(long, short, expectedFound) {
   const actual = result.found;
   const res = `${actual === expectedFound ? "✅ passed" : "🆘 failed"}`;
 
-  console.log(`Test case ('${long}','${short}'): ${res} (got ${actual}, expected ${expectedFound})`);
+  console.log(
+    `Test case ('${long}','${short}'): ${res} (got ${actual}, expected ${expectedFound})`
+  );
   console.log(`  Details: ${result.message}, Positions: [${result.matches}]`);
 }
 
