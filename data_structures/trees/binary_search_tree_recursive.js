@@ -82,6 +82,36 @@ class BinarySearchTree {
 
     return checkHeight(this.root) !== -1;
   }
+  createSampleTree() {
+    this.insert(100);
+    this.insert(50);
+    this.insert(200);
+    this.insert(25);
+    this.insert(75);
+    this.insert(350);
+    return this;
+  }
+
+  printTree() {
+    function printNode(node, level = 0, prefix = "Root: ") {
+      if (node !== null) {
+        console.log("  ".repeat(level) + prefix + node.value);
+        if (node.left !== null || node.right !== null) {
+          printNode(node.left, level + 1, "L: ");
+          printNode(node.right, level + 1, "R: ");
+        }
+      }
+    }
+    printNode(this.root);
+  }
+
+  test(){
+    const bst = new BinarySearchTree();
+    bst.createSampleTree();
+    bst.printTree();
+  }
 }
+
+// new BinarySearchTree().test()
 
 export { Node, BinarySearchTree };
