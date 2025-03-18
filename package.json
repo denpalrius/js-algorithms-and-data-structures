@@ -2,6 +2,7 @@
   "name": "js-algorithms-and-data-structures",
   "version": "1.0.0",
   "description": "These are practice algorithms imlemented using Javascript.",
+  "type": "module",
   "main": "index.js",
   "scripts": {
     "test": "jest"

@@ -83,3 +83,5 @@ class BinarySearchTree {
     return checkHeight(this.root) !== -1;
   }
 }
+
+export { Node, BinarySearchTree };

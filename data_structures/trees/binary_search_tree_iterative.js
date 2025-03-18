@@ -176,3 +176,5 @@ class BinarySearchTree {
     return removedNode;
   }
 }
+
+export { Node, BinarySearchTree };
