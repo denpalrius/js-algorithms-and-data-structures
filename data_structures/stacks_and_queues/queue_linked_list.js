@@ -12,8 +12,8 @@ class Queue {
     this.size = 0;
   }
 
-  enqueue(val) {
-    var newNode = new Node(val);
+  enqueue(value) {
+    const newNode = new Node(value);
 
     if (!this.first) {
       this.first = newNode;
@@ -29,7 +29,8 @@ class Queue {
   dequeue() {
     if (!this.first) return null;
 
-    var temp = this.first;
+    const dequeuedNode = this.first;
+
     if (this.first === this.last) {
       this.last = null;
     }
@@ -37,7 +38,38 @@ class Queue {
     this.first = this.first.next;
     this.size--;
 
-    return temp.value;
+    return dequeuedNode.value;
+  }
+
+  peek() {
+    if (!this.first) return null;
+    return this.first.value;
+  }
+
+  isEmpty() {
+    return this.size === 0;
+  }
+
+  getSize() {
+    return this.size;
+  }
+
+  clear() {
+    this.first = null;
+    this.last = null;
+    this.size = 0;
+  }
+
+  print() {
+    let current = this.first;
+    const queueValues = [];
+
+    while (current) {
+      queueValues.push(current.value);
+      current = current.next;
+    }
+
+    console.log(queueValues);
   }
 }
 
