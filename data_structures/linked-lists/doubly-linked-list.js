@@ -1,226 +1,228 @@
 class Node {
-    constructor(val) {
-        this.val = val;
-        this.next = null;
-        this.prev = null;
-    }
+  constructor(val) {
+    this.val = val;
+    this.next = null;
+    this.prev = null;
+  }
 }
 
 // Consumes more memory than a singly linked list
 // Getting first or last node is done in O(1)
 // Searching and insertion can be done faster than in singly linked list in O(n/2)
 class DoublyLinkedList {
-    constructor() {
-        this.head = null;
-        this.tail = null;
-        this.length = 0;
+  constructor() {
+    this.head = null;
+    this.tail = null;
+    this.length = 0;
+  }
+
+  push(value) {
+    const newNode = new Node(value);
+
+    if (!this.head) {
+      this.head = newNode;
+      this.tail = newNode;
+    } else {
+      this.tail.next = newNode;
+      newNode.prev = this.tail;
+
+      this.tail = newNode;
     }
 
-    push(value) {
-        const newNode = new Node(value);
+    this.length++;
+    return this;
+  }
 
-        if (!this.head) {
-            this.head = newNode;
-            this.tail = newNode;
-        } else {
-            this.tail.next = newNode;
-            newNode.prev = this.tail;
+  pop() {
+    if (this.length === 0) return undefined;
 
-            this.tail = newNode;
-        }
+    const lastNode = this.tail;
 
-        this.length++;
-        return this;
+    // If the length is 1
+    if (this.head === this.tail) {
+      this.head = null;
+      this.tail = null;
+    } else {
+      const newTail = lastNode.prev;
+
+      // Server the current connections
+      newTail.next = null;
+      lastNode.prev = null;
+
+      // Set the new tail
+      this.tail = newTail;
     }
 
-    print(onlyString) {
-        let current = this.head;
+    this.length--;
+    return lastNode;
+  }
 
-        let results = '';
+  // Remove at the beginning
+  shift() {
+    if (this.length === 0) return undefined;
 
-        while (current) {
-            results += current.val + '';
+    const oldHead = this.head;
 
-            if (!onlyString) {
-                console.log(current);
-            }
-            current = current.next;
-
-            if (current) {
-                results += ', ';
-            }
-
-        }
-
-        if (!results.length) results = 'EMPTY!';
-
-        return results;
+    if (this.length === 1) {
+      this.head = null;
+      this.tail = null;
+    } else {
+      this.head = this.head.next;
+      this.head.prev = null;
+    
+      oldHead.next = null;
     }
 
-    pop() {
-        if (this.length === 0) return undefined;
+    this.length--;
+    return oldHead;
+  }
 
-        const lastNode = this.tail;
+  // Add at the beginning
+  unshift(val) {
+    const newhead = new Node(val);
 
-        if (this.head === this.tail) {
-            this.head = null;
-            this.tail = null;
-        } else {
-            const newTail = lastNode.prev;
-            newTail.next = null;
-            this.tail = newTail;
+    if (!this.head) {
+      this.head = newhead;
+      this.tail = newhead;
+    } else {
+      this.head.prev = newhead;
+      newhead.next = this.head;
 
-            lastNode.prev = null;
-        }
-
-        this.length--;
-        return lastNode;
+      this.head = newhead;
     }
 
-    // Remove at the beginning
-    shift() {
-        if (this.length === 0) return undefined;
+    this.length++;
+    return this;
+  }
 
-        const oldHead = this.head;
+  get(index) {
+    if (index < 0 || index >= this.length) return undefined;
 
-        if (this.length === 1) {
-            this.head = null;
-            this.tail = null;
-        } else {
-            this.head = this.head.next;
-            this.head.prev = null;
+    let current, runs;
 
-            oldHead.next = null;
-        }
+    if (index <= this.length / 2) {
+      // console.log('Fetching from the beginning');
+      current = this.head;
+      runs = 0;
 
-        this.length--;
-        return oldHead;
+      while (index !== runs) {
+        current = current.next;
+        runs++;
+      }
+    } else {
+      // console.log('Fetching from the end');
+      current = this.tail;
+      runs = this.length - 1;
+
+      while (index !== runs) {
+        current = current.prev;
+        runs--;
+      }
     }
 
-    // Add at the beginning
-    unshift(val) {
-        const newhead = new Node(val);
+    return current;
+  }
 
-        if (!this.head) {
-            this.head = newhead;
-            this.tail = newhead;
-        } else {
-            this.head.prev = newhead;
-            newhead.next = this.head;
+  set(index, value) {
+    const existingNode = this.get(index);
 
-            this.head = newhead;
-        }
+    if (existingNode) {
+      existingNode.val = value;
+      return true;
+    }
+    return false;
+  }
 
-        this.length++;
-        return this;
+  insert(index, value) {
+    if (index < 0 || index > this.length) {
+      throw new Error("Invalid index");
     }
 
-    get(index) {
-        if (index < 0 || index >= this.length) return undefined;
+    if (index === 0) return this.unshift(value);
+    if (index === this.length) return this.push(value);
 
-        let current, runs;
+    const newNode = new Node(value);
+    const prevNode = this.get(index - 1);
+    const currentNode = prevNode.next;
 
-        if (index <= this.length / 2) {
-            // console.log('Fetching from the beginning');
-            current = this.head;
-            runs = 0;
+    prevNode.next = newNode;
+    newNode.prev = prevNode;
+    newNode.next = currentNode;
+    currentNode.prev = newNode;
 
-            while (index !== runs) {
-                current = current.next;
-                runs++;
-            }
-        } else {
-            // console.log('Fetching from the end');
-            current = this.tail;
-            runs = this.length - 1;
+    this.length++;
 
-            while (index !== runs) {
-                current = current.prev;
-                runs--;
-            }
-        }
+    return true;
+  }
 
-        return current;
+  remove(index) {
+    if (index < 0 || index >= this.length) {
+      throw new Error("Invalid index");
     }
 
-    set(index, value) {
-        const existingNode = this.get(index);
+    let oldNode;
 
-        if (existingNode) {
-            existingNode.val = value;
-            return true;
-        }
-        return false;
+    if (index === 0) {
+      oldNode = this.shift();
+    } else if (index === this.length - 1) {
+      oldNode = this.pop();
+    } else {
+      oldNode = this.get(index);
+      const prevNode = oldNode.prev;
+      const nextNode = oldNode.next;
+
+      prevNode.next = nextNode;
+      nextNode.prev = prevNode;
+
+      oldNode.prev = null;
+      oldNode.next = null;
+
+      this.length--;
+    }
+    return oldNode;
+  }
+
+  reverse() {
+    let current = this.head;
+    this.head = this.tail;
+    this.tail = current;
+
+    let prev = null;
+
+    while (current) {
+      const next = current.next;
+
+      current.next = prev;
+      current.prev = next;
+
+      prev = current;
+      current = next;
+    }
+    return this;
+  }
+
+  print(onlyString) {
+    let current = this.head;
+
+    let results = "";
+
+    while (current) {
+      results += current.val + "";
+
+      if (!onlyString) {
+        console.log(current);
+      }
+      current = current.next;
+
+      if (current) {
+        results += ", ";
+      }
     }
 
-    insert(index, value) {
+    if (!results.length) results = "EMPTY!";
 
-        if (index < 0 || index > this.length) {
-            throw new Error('Invalid index');
-        }
-
-        if (index === 0) return this.unshift(value);
-        if (index === this.length) return this.push(value);
-
-        const newNode = new Node(value);
-        const prevNode = this.get(index - 1);
-        const currentNode = prevNode.next;
-
-        prevNode.next = newNode;
-        newNode.prev = prevNode;
-        newNode.next = currentNode;
-        currentNode.prev = newNode;
-
-        this.length++;
-
-        return true;
-    }
-
-    remove(index) {
-        if (index < 0 || index >= this.length) {
-            throw new Error('Invalid index');
-        }
-
-        let oldNode;
-
-        if (index === 0) {
-            oldNode = this.shift();
-        } else if (index === this.length - 1) {
-            oldNode = this.pop();
-        } else {
-            oldNode = this.get(index);
-            const prevNode = oldNode.prev;
-            const nextNode = oldNode.next;
-
-            prevNode.next = nextNode;
-            nextNode.prev = prevNode;
-
-            oldNode.prev = null;
-            oldNode.next = null;
-
-            this.length--;
-        }
-        return oldNode;
-    }
-
-    reverse() {
-        let current = this.head;
-        this.head = this.tail;
-        this.tail = current;
-
-        let prev = null;
-
-        while (current) {
-            const next = current.next;
-
-            current.next = prev;
-            current.prev = next;
-
-            prev = current;
-            current = next;
-        }
-        return this;
-    }
+    return results;
+  }
 }
 
 // Node creation
@@ -269,7 +271,6 @@ list.push(5);
 // console.log(list.set(2, "middle"));
 // console.log(list.set(4, "last"));
 // console.log('list: ', list.print(1));
-
 
 // Insert
 // console.log('list: ', list.print(1));

@@ -79,19 +79,21 @@ class SinglyLinkedList {
         // 0 items
         if (!this.head) return undefined;
 
-        const current = this.head;
+        const oldhead = this.head;
 
         // 1 item
-        if (!current.next) {
+        if (!oldhead.next) {
             this.head = null;
             this.tail = null;
+        // More than 1 item
         } else {
-            this.head = current.next
-            current.next = null;
+            this.head = oldhead.next
+            oldhead.next = null;
         }
 
         this.length--;
-        return current;
+        
+        return oldhead;
     }
 
     unshift(val) {
