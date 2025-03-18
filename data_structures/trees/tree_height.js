@@ -1,41 +1,31 @@
+import { Node } from "./tree_node.js";
+
 /**
- * Calculates the size (number of nodes) of a binary tree.
- * This function uses recursion to count all nodes.
+ * Calculates the height of a binary tree.
+ * This function uses recursion to find the maximum height.
  *
  * Algorithm used: Recursion
  *
- * Time complexity - O(n) - linear
- * Space complexity - O(h) - height of the tree (worst case O(n))
+ * Time complexity: O(n) - linear, where n is the number of nodes.
+ * Space complexity: O(h) - where h is the height of the tree (worst case O(n) for skewed trees).
  *
- * @param {Node|null} root - The root node of the binary tree
- * @returns {number} - The size of the tree (number of nodes)
+ * @param {Node|null} root - The root node of the binary tree.
+ * @returns {number} - The height of the tree.
  */
-function treeSize(root) {
-  // Base case: empty tree has size 0
-  if (root === null) return 0;
+function treeHeight(root) {
+  if (root === null) return 0; // Base case: empty tree has height 0
 
-  // Size is 1 (current node) plus sizes of left and right subtrees
-  const leftSize = treeSize(root.left);
-  const rightSize = treeSize(root.right);
+  const leftHeight = treeHeight(root.left);
+  const rightHeight = treeHeight(root.right);
 
-  return 1 + leftSize + rightSize;
-}
-
-/**
- * Represents a node in a binary tree.
- */
-class Node {
-  constructor() {
-    this.left = null;
-    this.right = null;
-  }
+  return Math.max(leftHeight, rightHeight) + 1; // Height is max of subtrees + 1
 }
 
 function test(root, expected) {
-  const actual = treeSize(root);
-  const res = `${actual === expected ? "✅ passed" : "🆘 failed"}`;
+  const actual = treeHeight(root);
+  const result = actual === expected ? "✅ passed" : "🆘 failed";
 
-  console.log(`Test case: ${res} (got ${actual}, expected ${expected})`);
+  console.log(`Test case: ${result} (got ${actual}, expected ${expected})`);
 }
 
 // Test cases
@@ -44,10 +34,24 @@ root.left = new Node();
 root.right = new Node();
 root.left.left = new Node();
 
-test(root, 4); // Expected: 4 (root + left + right + left.left = 4 nodes)
+test(root, 3);
 
 const root2 = null;
-test(root2, 0); // Expected: 0 (empty tree)
+test(root2, 0);
 
 const root3 = new Node();
-test(root3, 1); // Expected: 1 (just the root node)
+test(root3, 1);
+
+const root4 = new Node();
+root4.left = new Node();
+root4.left.left = new Node();
+root4.left.left.left = new Node();
+
+test(root4, 4);
+
+const root5 = new Node();
+root5.right = new Node();
+root5.right.right = new Node();
+root5.right.right.right = new Node();
+
+test(root5, 4);

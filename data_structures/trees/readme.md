@@ -111,3 +111,7 @@ Trees are fundamental data structures with numerous real-world applications:
     * Network routing algorithms can use tree structures to find the most efficient route between two points.
 
 These are just a few examples of how trees are used in various domains. Their hierarchical nature and efficient traversal algorithms make them valuable tools in computer science and beyond.
+
+## References
+1. OpenMathBooks. (n.d.). Discrete mathematics: Trees. OpenMathBooks. Retrieved March 18, 2025, from https://discrete.openmathbooks.org/dmoi3/sec_trees.html
+
