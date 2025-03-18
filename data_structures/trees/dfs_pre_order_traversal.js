@@ -46,16 +46,23 @@ function test(actual, expected, testName) {
 
 // Test Preorder DFS Traversal
 
-// 1. Test empty tree
+// 1. Test balanced tree
+const dfsTree = new DFS();
+dfsTree.createSampleTree();
+console.log("Sample Tree Structure:");
+dfsTree.printTree()
+test(dfsTree.preOrderDFS(), [100, 50, 25, 75, 200, 350], "DFS traversal on sample tree");
+
+// 2. Test empty tree
 const emptyTree = new DFS();
 test(emptyTree.preOrderDFS(), [], "preOrderDFS empty tree");
 
-// 2. Test single node tree
+// 3. Test single node tree
 const singleNodeTree = new DFS();
 singleNodeTree.insert(100);
 test(singleNodeTree.preOrderDFS(), [100], "preOrderDFS single node tree");
 
-// 3. Test balanced tree
+// 4. Test balanced tree
 const balancedTree = new DFS();
 balancedTree.insert(100);
 balancedTree.insert(50);
@@ -66,7 +73,7 @@ balancedTree.insert(125);
 balancedTree.insert(175);
 test(balancedTree.preOrderDFS(), [100, 50, 25, 75, 150, 125, 175], "preOrderDFS balanced tree");
 
-// 4. Test left-heavy tree
+// 5. Test left-heavy tree
 const leftHeavyTree = new DFS();
 leftHeavyTree.insert(100);
 leftHeavyTree.insert(90);
@@ -74,7 +81,7 @@ leftHeavyTree.insert(80);
 leftHeavyTree.insert(70);
 test(leftHeavyTree.preOrderDFS(), [100, 90, 80, 70], "preOrderDFS left-heavy tree");
 
-// 5. Test right-heavy tree
+// 6. Test right-heavy tree
 const rightHeavyTree = new DFS();
 rightHeavyTree.insert(100);
 rightHeavyTree.insert(110);
@@ -82,7 +89,7 @@ rightHeavyTree.insert(120);
 rightHeavyTree.insert(130);
 test(rightHeavyTree.preOrderDFS(), [100, 110, 120, 130], "preOrderDFS right-heavy tree");
 
-// 6. Test mixed insert order
+// 7. Test mixed insert order
 const mixedTree = new DFS();
 mixedTree.insert(100);
 mixedTree.insert(50);
